@@ -31,5 +31,16 @@
     "description": "Genç Miles Morales bir yandan yeni evine ayak uydurmaya, bir yandan da yeni Spider-Man olmak için ustası Peter Parker'ın izinden gitmeye çalışır. Şiddetli bir güç mücadelesi nedeniyle evi yok olma tehdidiyle karşılaşan Miles, Spider-Man'ın görevini devralarak iyi bir iş çıkarmalıdır.",
     "purchaseLink": "https://www.itempazar.com/",
     "discount": 99
+  },
+  {
+    "id": 4,
+    "title": "Red Dead Redemption 2",
+    "price": 1000,
+    "image": "https://i.hizliresim.com/yypn38h.jpg",
+    "video": "https://www.youtube.com/watch?v=gmA6MrX81z4&pp=ygUMcmRyMiB0cmFpbGVy0gcJCc4JAYcqIYzv",
+    "category": "Macera",
+    "description": "175 kez Yılın Oyunu ödülü ve 250 kez tam puan değerlendirme alan Red Dead Redemption 2 yeni çağın şafağında Vahşi Batıda Artur Morgan ve Van der Linde çetesinin hikayesini anlatan görkemli bir onur ve sadakat destanı.",
+    "purchaseLink": "https://www.itempazar.com/",
+    "discount": 98
   }
 ]
