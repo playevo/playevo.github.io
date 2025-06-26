@@ -3,54 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayEvo</title>
+    <title>Oyun Platformu</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-gray-900 text-white">
     <!-- Navbar -->
-    <nav class="bg-gray-800 p-4 shadow-lg sticky top-0 z-50">
+    <nav class="bg-gray-800 p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-blue-400">PlayEvo</h1>
+            <h1 class="text-2xl font-bold">Oyun Platformu</h1>
             <div>
-                <a href="index.html" class="text-gray-300 hover:text-blue-400 mx-4">Ana Sayfa</a>
-                <a href="admin.html" class="text-gray-300 hover:text-blue-400 mx-4">Admin Paneli</a>
+                <a href="index.html" class="text-gray-300 hover:text-white mx-4">Ana Sayfa</a>
+                <a href="admin.html" class="text-gray-300 hover:text-white mx-4">Admin Paneli</a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Banner Slider -->
-    <section id="hero-banner" class="relative bg-gray-800 h-96 mb-8 overflow-hidden">
-        <div id="slider-container" class="flex transition-transform duration-500">
-            <!-- Slider öğeleri JavaScript ile eklenecek -->
-        </div>
-        <div class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-            <!-- Slider noktaları JavaScript ile eklenecek -->
-        </div>
+    <!-- Hero Banner (Slider) -->
+    <section id="hero-banner" class="relative overflow-hidden bg-gray-800 h-[60vh]">
+        <div id="slider-container" class="flex transition-transform duration-500 h-full"></div>
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
     </section>
 
-    <!-- Kategori Navigasyonu -->
-    <div class="container mx-auto mb-8">
-        <nav class="flex space-x-4 justify-center">
-            <button onclick="filterGames('Tümü')" class="text-gray-300 hover:text-blue-400 px-4 py-2 rounded-lg bg-gray-800">Tümü</button>
-            <button onclick="filterGames('Aksiyon')" class="text-gray-300 hover:text-blue-400 px-4 py-2 rounded-lg bg-gray-800">Aksiyon</button>
-            <button onclick="filterGames('Macera')" class="text-gray-300 hover:text-blue-400 px-4 py-2 rounded-lg bg-gray-800">Macera</button>
-            <button onclick="filterGames('Strateji')" class="text-gray-300 hover:text-blue-400 px-4 py-2 rounded-lg bg-gray-800">Strateji</button>
-            <button onclick="filterGames('Simülasyon')" class="text-gray-300 hover:text-blue-400 px-4 py-2 rounded-lg bg-gray-800">Simülasyon</button>
-        </nav>
-    </div>
+    <!-- Arama Çubuğu ve Kategoriler -->
+    <section class="container mx-auto py-8">
+        <div class="mb-8 flex justify-center">
+            <input type="text" id="search-input" placeholder="Oyun veya kategori ara..." class="w-full max-w-md p-2 rounded-l bg-gray-700 text-white">
+            <button onclick="searchGames(document.getElementById('search-input').value)" class="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700">Ara</button>
+        </div>
+        <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button onclick="filterGames('Tümü')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tümü</button>
+            <button onclick="filterGames('Aksiyon')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Aksiyon</button>
+            <button onclick="filterGames('Macera')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Macera</button>
+            <button onclick="filterGames('Strateji')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Strateji</button>
+            <button onclick="filterGames('Simülasyon')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simülasyon</button>
+        </div>
 
-    <!-- Oyun Listesi -->
-    <div class="container mx-auto py-8">
-        <!-- Arama Çubuğu -->
-        <div class="max-w-md mx-auto mb-4">
-            <input type="text" id="search-input" placeholder="Oyun veya kategori ara..." class="w-full p-3 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-400">
-        </div>
-        <h2 class="text-3xl font-bold text-center mb-8 text-blue-400">Popüler Oyunlar</h2>
-        <div id="game-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <!-- Oyun kartları JavaScript ile buraya eklenecek -->
-        </div>
-    </div>
+        <!-- Oyun Listesi -->
+        <div id="game-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+    </section>
 
     <script src="script.js"></script>
 </body>

@@ -35,7 +35,7 @@
         </div>
     </div>
 
-    <!-- Admin Paneli (Girişten sonra görünecek) -->
+    <!-- Admin Paneli -->
     <div id="admin-panel" class="container mx-auto py-8 hidden">
         <h2 class="text-3xl font-bold text-center mb-8">Oyun Ekle</h2>
         <form id="game-form" class="bg-gray-800 rounded-lg p-6 shadow-lg max-w-lg mx-auto">
@@ -54,6 +54,10 @@
             <div class="mb-4">
                 <label for="image" class="block text-gray-300">Resim URL'si</label>
                 <input type="url" id="image" name="image" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-4">
+                <label for="video" class="block text-gray-300">Video Embed Linki (YouTube veya MP4)</label>
+                <input type="url" id="video" name="video" class="w-full p-2 rounded bg-gray-700 text-white" placeholder="https://www.youtube.com/embed/videoID">
             </div>
             <div class="mb-4">
                 <label for="category" class="block text-gray-300">Kategori</label>

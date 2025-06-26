@@ -19,7 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('hero-banner').innerHTML = '<p class="text-gray-400 text-center">Öne çıkan oyun yok!</p>';
                 return;
             }
-            setupSlider(allGames.slice(0, 3)); // İlk 3 oyunu slider'da göster
+            allGames = allGames.map(game => ({
+                ...game,
+                discount: parseFloat(game.discount) || 0,
+                video: game.video || ''
+            }));
+            setupSlider(allGames.slice(0, 3));
             displayGames(allGames);
         } catch (err) {
             console.error('Oyunlar yüklenemedi:', err);
@@ -36,20 +41,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         games.forEach((game, index) => {
             const slide = document.createElement('div');
-            slide.className = 'min-w-full flex justify-center items-center';
+            slide.className = 'min-w-full flex justify-center items-center relative';
             const finalPrice = game.discount > 0 ? (game.price * (1 - game.discount / 100)).toFixed(2) : game.price.toFixed(2);
+            const isYouTube = game.video && game.video.includes('youtube.com/embed');
             slide.innerHTML = `
-                <div class="container mx-auto flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 text-center md:text-left">
-                        <h2 class="text-4xl font-bold text-blue-400 mb-4">${game.title}</h2>
-                        <p class="text-2xl text-gray-300 mb-4">
-                            ${game.discount > 0 ? `<span class="line-through text-gray-500">${game.price} TL</span> <span class="text-green-400">${finalPrice} TL</span> (%${game.discount} indirim)` : `${game.price} TL`}
-                        </p>
-                        <a href="game.html?id=${game.id}" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700">Detaylar</a>
-                    </div>
-                    <div class="md:w-1/2">
-                        <img src="${game.image}" alt="${game.title}" class="w-full h-64 object-cover rounded-lg">
-                    </div>
+                ${game.video ? (isYouTube ? `
+                    <iframe class="w-full h-full" src="${game.video}?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                ` : `
+                    <video class="w-full h-full" autoplay muted playsinline controls=false onended="nextSlide()">
+                        <source src="${game.video}" type="video/mp4">
+                        Video oynatılamıyor.
+                    </video>
+                `) : `
+                    <img src="${game.image}" alt="${game.title}" class="w-full h-full">
+                `}
+                <div class="overlay">
+                    <h2>${game.title}</h2>
+                    <p>
+                        ${game.discount > 0 ? `<span class="line-through text-gray-500">${game.price} TL</span> <span class="text-green-400">${finalPrice} TL</span> (%${game.discount} indirim)` : `${game.price} TL`}
+                    </p>
+                    <a href="game.html?id=${game.id}">Detaylar</a>
                 </div>
             `;
             sliderContainer.appendChild(slide);
@@ -65,11 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Slider'ı başlat
     const startSlider = () => {
-        slideInterval = setInterval(nextSlide, 5000); // 5 saniyede bir geçiş
+        clearInterval(slideInterval);
+        const currentVideo = document.querySelectorAll('#slider-container video')[currentSlide];
+        const currentIframe = document.querySelectorAll('#slider-container iframe')[currentSlide];
+        console.log('Slayt tipi:', currentVideo ? 'MP4' : currentIframe ? 'YouTube' : 'Resim');
+        if (currentVideo) {
+            currentVideo.play().catch(err => console.error('Video oynatma hatası:', err));
+            // MP4 için sadece onended ile geçiş
+        } else {
+            // YouTube veya resim için 30 saniye
+            slideInterval = setInterval(nextSlide, 30000);
+        }
     };
 
     // Bir sonraki slayta geç
-    const nextSlide = () => {
+    window.nextSlide = () => {
+        console.log('Geçiş yapılıyor, slayt:', currentSlide + 1);
         currentSlide = (currentSlide + 1) % document.querySelectorAll('#slider-container > div').length;
         updateSlider();
     };
@@ -89,6 +111,22 @@ document.addEventListener('DOMContentLoaded', () => {
         const dots = document.querySelectorAll('#hero-banner .absolute.bottom-4 button');
         dots.forEach((dot, index) => {
             dot.className = `w-3 h-3 rounded-full ${index === currentSlide ? 'bg-blue-400' : 'bg-gray-400'} hover:bg-blue-600`;
+        });
+        const videos = document.querySelectorAll('#slider-container video');
+        videos.forEach((video, index) => {
+            if (index === currentSlide) {
+                video.play().catch(err => console.error('Video oynatma hatası:', err));
+            } else {
+                video.pause();
+                video.currentTime = 0;
+            }
+        });
+        const iframes = document.querySelectorAll('#slider-container iframe');
+        iframes.forEach((iframe, index) => {
+            if (index !== currentSlide) {
+                const src = iframe.src;
+                iframe.src = src; // Yeniden yükleyerek sıfırlama
+            }
         });
     };
 

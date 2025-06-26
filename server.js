@@ -10,13 +10,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname)));
 
-// Sabit kullanıcı (ortam değişkenlerinden alınıyor)
 const adminUser = {
     username: process.env.ADMIN_USERNAME || 'admin',
     password: process.env.ADMIN_PASSWORD || 'admin123'
 };
 
-// Giriş endpoint'i
 app.post('/api/login', (req, res) => {
     console.log('Giriş isteği alındı:', req.body);
     const { username, password } = req.body;
@@ -33,7 +31,6 @@ app.post('/api/login', (req, res) => {
     }
 });
 
-// Oyunları getir
 app.get('/api/games', async (req, res) => {
     try {
         const data = await fs.readFile('games.json', 'utf8');
@@ -44,7 +41,6 @@ app.get('/api/games', async (req, res) => {
     }
 });
 
-// Yeni oyun ekle
 app.post('/api/games', async (req, res) => {
     try {
         const data = await fs.readFile('games.json', 'utf8');
@@ -54,6 +50,7 @@ app.post('/api/games', async (req, res) => {
             title: req.body.title,
             price: parseFloat(req.body.price),
             image: req.body.image,
+            video: req.body.video || '',
             category: req.body.category,
             description: req.body.description,
             purchaseLink: req.body.purchaseLink,
@@ -69,7 +66,6 @@ app.post('/api/games', async (req, res) => {
     }
 });
 
-// Oyunu güncelle
 app.put('/api/games/:id', async (req, res) => {
     try {
         const data = await fs.readFile('games.json', 'utf8');
@@ -84,6 +80,7 @@ app.put('/api/games/:id', async (req, res) => {
             title: req.body.title,
             price: parseFloat(req.body.price),
             image: req.body.image,
+            video: req.body.video || '',
             category: req.body.category,
             description: req.body.description,
             purchaseLink: req.body.purchaseLink,
@@ -99,7 +96,6 @@ app.put('/api/games/:id', async (req, res) => {
     }
 });
 
-// Oyunu sil
 app.delete('/api/games/:id', async (req, res) => {
     try {
         const data = await fs.readFile('games.json', 'utf8');

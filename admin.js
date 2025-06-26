@@ -12,7 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loginButton.addEventListener('click', async () => {
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-
+        console.log('Giriş denemesi:', { username, password });
+        if (!username || !password) {
+            loginError.innerText = 'Kullanıcı adı ve şifre gerekli';
+            loginError.classList.remove('hidden');
+            return;
+        }
         try {
             const response = await fetch('/api/login', {
                 method: 'POST',
@@ -20,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify({ username, password })
             });
             const result = await response.json();
+            console.log('Sunucu yanıtı:', result);
             if (result.success) {
                 loginScreen.style.display = 'none';
                 adminPanel.classList.remove('hidden');
@@ -30,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (err) {
             console.error('Giriş hatası:', err);
-            loginError.innerText = 'Giriş sırasında bir hata oluştu!';
+            loginError.innerText = 'Sunucuya bağlanılamadı! Lütfen sunucunun çalıştığından emin olun.';
             loginError.classList.remove('hidden');
         }
     });
@@ -51,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${game.discount > 0 ? `<br><span class="text-green-400 text-sm">İndirim: %${game.discount}</span>` : ''}
                         <br><span class="text-gray-400 text-sm">Kategori: ${game.category || 'Belirtilmemiş'}</span>
                         <br><img src="${game.image}" alt="${game.title}" class="w-32 h-16 object-cover my-2">
+                        ${game.video ? `<br><span class="text-gray-400 text-sm">Video: <a href="${game.video}" target="_blank" class="text-blue-400">Video Linki</a></span>` : ''}
                         <p>${game.description}</p>
                         <a href="${game.purchaseLink}" target="_blank" class="text-blue-400">Satın Alma Linki</a>
                     </div>
@@ -74,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             title: document.getElementById('title').value,
             price: parseFloat(document.getElementById('price').value),
             image: document.getElementById('image').value,
+            video: document.getElementById('video').value || '',
             category: document.getElementById('category').value,
             description: document.getElementById('description').value,
             purchaseLink: document.getElementById('purchaseLink').value,
@@ -118,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('title').value = game.title;
                 document.getElementById('price').value = game.price;
                 document.getElementById('image').value = game.image;
+                document.getElementById('video').value = game.video || '';
                 document.getElementById('category').value = game.category || 'Aksiyon';
                 document.getElementById('description').value = game.description;
                 document.getElementById('purchaseLink').value = game.purchaseLink;
@@ -147,7 +156,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     };
-
-    // İlk yüklemede oyunları listele
-    // loadGames() yalnızca giriş yaptıktan sonra çağrılır
 });
