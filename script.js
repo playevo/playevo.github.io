@@ -141,19 +141,19 @@ document.addEventListener('DOMContentLoaded', () => {
         games.forEach(game => {
             const finalPrice = game.discount > 0 ? (game.price * (1 - game.discount / 100)).toFixed(2) : game.price.toFixed(2);
             const gameCard = document.createElement('div');
-            gameCard.className = 'bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow transform hover:-translate-y-1';
+            gameCard.className = 'game-card bg-gray-800 rounded-lg overflow-hidden shadow-lg';
             gameCard.innerHTML = `
                 <div class="relative">
                     <img src="${game.image}" alt="${game.title}" class="w-full h-48 object-cover">
-                    <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">${game.category || 'Belirtilmemiş'}</span>
-                    ${game.discount > 0 ? `<span class="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded">-${game.discount}%</span>` : ''}
+                    <span class="category-tag absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">${game.category || 'Belirtilmemiş'}</span>
+                    ${game.discount > 0 ? `<span class="discount-tag absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded">-${game.discount}%</span>` : ''}
                 </div>
                 <div class="p-4">
                     <h3 class="text-xl font-semibold text-blue-400">${game.title}</h3>
                     <p class="text-gray-400">
                         ${game.discount > 0 ? `<span class="line-through text-gray-500">${game.price} TL</span> <span class="text-green-400">${finalPrice} TL</span>` : `${game.price} TL`}
                     </p>
-                    <a href="game.html?id=${game.id}" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Detaylar</a>
+                    <a href="game.html?id=${game.id}" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 hover:scale-105 transition-all duration-300">Detaylar</a>
                 </div>
             `;
             gameList.appendChild(gameCard);
