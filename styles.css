@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden; /* Taşma alanını gizle */
 }
 
 #slider-container video,
@@ -27,7 +28,9 @@
     top: 0;
     left: 0;
     z-index: 1;
-    border: none; /* YouTube iframe kenarlıklarını kaldır */
+    border: none;
+    transform: scale(1.2); /* Videoyu %20 yakınlaştır */
+    transform-origin: center; /* Yakınlaştırma merkezden */
 }
 
 #slider-container img {
@@ -82,7 +85,6 @@
     background-color: #1E40AF;
 }
 
-/* YouTube iframe için ekstra temizlik */
 #slider-container iframe {
     pointer-events: none; /* Tıklama olaylarını devre dışı bırak */
 }
