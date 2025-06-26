@@ -20,14 +20,15 @@
     </nav>
 
     <!-- Oyun Detayı -->
-    <section class="container mx-auto py-8">
-        <div id="game-detail" class="bg-gray-800 rounded-lg shadow-lg p-6">
-            <h2 id="game-title" class="text-3xl font-bold text-blue-400 mb-4"></h2>
-            <img id="game-image" class="w-full h-64 object-cover rounded mb-4" alt="Oyun resmi">
-            <p id="game-description" class="text-gray-300 mb-4"></p>
-            <p id="game-price" class="text-gray-400 mb-4"></p>
-            <p id="game-category" class="text-gray-400 mb-4"></p>
-            <a id="game-purchase" href="#" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Satın Al</a>
+    <section id="game-detail" class="relative">
+        <div id="game-media"></div>
+        <div class="overlay">
+            <h2 id="game-title" class="text-3xl font-bold"></h2>
+            <p id="game-price" class="text-xl"></p>
+            <p id="game-category" class="text-lg"></p>
+            <p id="game-description" class="text-lg max-w-2xl"></p>
+            <a id="game-purchase" href="#" class="inline-block">Satın Al</a>
+            <p class="warning-text">Steam hesapları offline modda çalışır, Xbox hesapları online'dır.</p>
         </div>
     </section>
 

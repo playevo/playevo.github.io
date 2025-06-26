@@ -21,14 +21,25 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         const finalPrice = game.discount > 0 ? (game.price * (1 - game.discount / 100)).toFixed(2) : game.price.toFixed(2);
+        const isYouTube = game.video && game.video.includes('youtube.com/embed');
+
+        document.getElementById('game-media').innerHTML = game.video ? (isYouTube ? `
+            <iframe src="${game.video}?controls=0&showinfo=0&rel=0&autoplay=1&mute=1&modestbranding=1&iv_load_policy=3" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        ` : `
+            <video autoplay muted playsinline controls=false>
+                <source src="${game.video}" type="video/mp4">
+                Video oynatılamıyor.
+            </video>
+        `) : `
+            <img src="${game.image}" alt="${game.title}">
+        `;
 
         document.getElementById('game-title').textContent = game.title;
-        document.getElementById('game-image').src = game.image;
-        document.getElementById('game-description').textContent = game.description || 'Açıklama mevcut değil.';
         document.getElementById('game-price').innerHTML = game.discount > 0 
             ? `<span class="line-through text-gray-500">${game.price} TL</span> <span class="text-green-400">${finalPrice} TL</span> (%${game.discount} indirim)`
             : `${game.price} TL`;
         document.getElementById('game-category').textContent = `Kategori: ${game.category || 'Belirtilmemiş'}`;
+        document.getElementById('game-description').textContent = game.description || 'Açıklama mevcut değil.';
         document.getElementById('game-purchase').href = game.purchaseLink || '#';
     } catch (err) {
         console.error('Oyun yüklenemedi:', err);
