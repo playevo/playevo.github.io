@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oyun Detayları</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Oyun Platformu</h1>
+            <div>
+                <a href="index.html" class="text-gray-300 hover:text-white mx-4">Ana Sayfa</a>
+                <a href="admin.html" class="text-gray-300 hover:text-white mx-4">Admin Paneli</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Oyun Detayları -->
+    <div class="container mx-auto py-8">
+        <div id="game-details" class="bg-gray-800 rounded-lg p-6 shadow-lg max-w-2xl mx-auto">
+            <h2 class="text-3xl font-bold mb-4">Oyun Yükleniyor...</h2>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const gameId = urlParams.get('id');
+            
+            fetch('/api/games')
+                .then(response => response.json())
+                .then(games => {
+                    const game = games.find(g => g.id == gameId);
+                    if (game) {
+                        const gameDetails = document.getElementById('game-details');
+                        gameDetails.innerHTML = `
+                            <div class="flex flex-col items-center">
+                                <img src="${game.image}" alt="${game.title}" class="w-full max-w-md h-48 object-contain rounded-lg mb-4">
+                                <h2 class="text-3xl font-bold text-center">${game.title}</h2>
+                                <p class="text-gray-400 text-xl mb-4 text-center">${game.price} TL</p>
+                                <p class="text-gray-300 mb-6 text-center">${game.description}</p>
+                                <a href="${game.purchaseLink}" target="_blank" class="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700">Satın Al</a>
+                            </div>
+                        `;
+                    } else {
+                        document.getElementById('game-details').innerHTML = '<p class="text-center">Oyun bulunamadı!</p>';
+                    }
+                })
+                .catch(err => console.error('Oyun yüklenemedi:', err));
+        });
+    </script>
+</body>
+</html>

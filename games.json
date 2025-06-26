@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "title": "Forza Horizon 5",
+    "price": 1000,
+    "image": "https://i.hizliresim.com/q12zkck.jpg",
+    "category": "Simülasyon",
+    "description": "Dünyanın en harika araçlarında sınırsız ve eğlenceli sürüş aksiyonuyla Meksika'nın canlı açık dünya manzaralarını keşfedin.",
+    "purchaseLink": "https://www.itempazar.com/",
+    "discount": 98
+  },
+  {
+    "id": 2,
+    "title": "Grand Theft Auto 5",
+    "price": 1000,
+    "image": "https://i.hizliresim.com/gx82g3x.jpg",
+    "category": "Aksiyon",
+    "description": "Grand Theft Auto V'in PC sürümü, oyunculara 4k ve ötesinde çözünürlükle ve saniyede 60 kare tazeleme hızıyla Los Santos ve Blaine County dünyasını keşfetme fırsatını sunuyor.",
+    "purchaseLink": "https://www.itempazar.com/",
+    "discount": 98
+  },
+  {
+    "id": 3,
+    "title": "Marvel’s Spider-Man: Miles Morales",
+    "price": 2000,
+    "image": "https://i.hizliresim.com/yysehwk.jpg",
+    "category": "Macera",
+    "description": "Genç Miles Morales bir yandan yeni evine ayak uydurmaya, bir yandan da yeni Spider-Man olmak için ustası Peter Parker'ın izinden gitmeye çalışır. Şiddetli bir güç mücadelesi nedeniyle evi yok olma tehdidiyle karşılaşan Miles, Spider-Man'ın görevini devralarak iyi bir iş çıkarmalıdır.",
+    "purchaseLink": "https://www.itempazar.com/",
+    "discount": 99
+  }
+]

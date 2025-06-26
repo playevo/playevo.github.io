@@ -1,0 +1,29 @@
+body {
+    background: linear-gradient(to bottom, #1b2838, #2a475e);
+    font-family: 'Arial', sans-serif;
+}
+
+#hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://source.unsplash.com/random/1920x1080?gaming');
+    background-size: cover;
+    background-position: center;
+}
+
+#slider-container {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.game-card img {
+    transition: transform 0.3s ease;
+}
+
+.game-card:hover img {
+    transform: scale(1.05);
+}
+
+button:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
