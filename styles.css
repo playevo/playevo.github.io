@@ -182,3 +182,17 @@
     height: 50px;
     object-fit: contain;
 }
+
+/* Arama çubuğu ve kategori butonları */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.category-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}

@@ -12,7 +12,7 @@
     <nav class="bg-gray-800 p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
             <a href="index.html">
-                <img src="https://i.hizliresim.com/oth8r16.png" alt="Oyun Platformu Logosu" class="logo">
+                <img src="https://i.hizliresim.com/n7qgod7.png" alt="Oyun Platformu Logosu" class="logo">
             </a>
             <div>
                 <a href="index.html" class="text-gray-300 hover:text-white mx-4">Ana Sayfa</a>
@@ -27,17 +27,25 @@
         <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2"></div>
     </section>
 
+    <!-- Arama Çubuğu -->
+    <section class="container mx-auto py-4">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Oyun ara..." class="bg-gray-800 text-white p-2 rounded w-full max-w-md">
+        </div>
+    </section>
+
+    <!-- Kategori Butonları -->
+    <section class="container mx-auto py-4">
+        <div class="category-buttons">
+            <button onclick="filterGames('Tümü')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tümü</button>
+            <button onclick="filterGames('Aksiyon')" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Aksiyon</button>
+            <button onclick="filterGames('Strateji')" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Strateji</button>
+            <button onclick="filterGames('Macera')" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Macera</button>
+        </div>
+    </section>
+
     <!-- Oyun Listesi -->
     <section class="container mx-auto py-8">
-        <div class="flex justify-between items-center mb-6">
-            <div>
-                <button onclick="filterGames('Tümü')" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Tümü</button>
-                <button onclick="filterGames('Aksiyon')" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Aksiyon</button>
-                <button onclick="filterGames('Strateji')" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Strateji</button>
-                <button onclick="filterGames('Macera')" class="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">Macera</button>
-            </div>
-            <input type="text" id="search-input" placeholder="Oyun ara..." class="bg-gray-800 text-white p-2 rounded">
-        </div>
         <div id="game-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
     </section>
 
