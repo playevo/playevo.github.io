@@ -8,7 +8,8 @@
     "category": "Simülasyon",
     "description": "Dünyanın en harika araçlarında sınırsız ve eğlenceli sürüş aksiyonuyla Meksika'nın canlı açık dünya manzaralarını keşfedin.",
     "purchaseLink": "https://www.itempazar.com/",
-    "discount": 98
+    "discount": 98,
+    "inStock": true
   },
   {
     "id": 2,
@@ -19,7 +20,8 @@
     "category": "Aksiyon",
     "description": "Grand Theft Auto V'in PC sürümü, oyunculara 4k ve ötesinde çözünürlükle ve saniyede 60 kare tazeleme hızıyla Los Santos ve Blaine County dünyasını keşfetme fırsatını sunuyor.",
     "purchaseLink": "https://www.itempazar.com/",
-    "discount": 98
+    "discount": 98,
+    "inStock": true
   },
   {
     "id": 3,
@@ -30,7 +32,8 @@
     "category": "Macera",
     "description": "Genç Miles Morales bir yandan yeni evine ayak uydurmaya, bir yandan da yeni Spider-Man olmak için ustası Peter Parker'ın izinden gitmeye çalışır. Şiddetli bir güç mücadelesi nedeniyle evi yok olma tehdidiyle karşılaşan Miles, Spider-Man'ın görevini devralarak iyi bir iş çıkarmalıdır.",
     "purchaseLink": "https://www.itempazar.com/",
-    "discount": 99
+    "discount": 99,
+    "inStock": false
   },
   {
     "id": 4,
@@ -41,6 +44,19 @@
     "category": "Macera",
     "description": "175 kez Yılın Oyunu ödülü ve 250 kez tam puan değerlendirme alan Red Dead Redemption 2 yeni çağın şafağında Vahşi Batıda Artur Morgan ve Van der Linde çetesinin hikayesini anlatan görkemli bir onur ve sadakat destanı.",
     "purchaseLink": "https://www.itempazar.com/",
-    "discount": 98
+    "discount": 98,
+    "inStock": true
+  },
+  {
+    "id": 5,
+    "title": "XBOX PC GamePass 1 aylık",
+    "price": 20,
+    "image": "https://i.hizliresim.com/6beamyp.jpg",
+    "video": "https://www.youtube.com/embed/-rUEWRG8hp8?si=hj90vxc1xwz2tB1-",
+    "category": "Simülasyon",
+    "description": "PC Game Pass ile Windows bilgisayarda yüzlerce kaliteli oyunu oynayın",
+    "purchaseLink": "https://www.itempazar.com/",
+    "discount": 0,
+    "inStock": true
   }
 ]

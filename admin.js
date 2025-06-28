@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <strong>${game.title}</strong> - ${game.price} TL
                         ${game.discount > 0 ? `<br><span class="text-green-400 text-sm">İndirim: %${game.discount}</span>` : ''}
                         <br><span class="text-gray-400 text-sm">Kategori: ${game.category || 'Belirtilmemiş'}</span>
+                        <br><span class="text-gray-400 text-sm">Stok: ${game.inStock ? 'Var' : 'Yok'}</span>
                         <br><img src="${game.image}" alt="${game.title}" class="w-32 h-16 object-cover my-2">
                         ${game.video ? `<br><span class="text-gray-400 text-sm">Video: <a href="${game.video}" target="_blank" class="text-blue-400">Video Linki</a></span>` : ''}
                         <p>${game.description}</p>
@@ -85,7 +86,8 @@ document.addEventListener('DOMContentLoaded', () => {
             category: document.getElementById('category').value,
             description: document.getElementById('description').value,
             purchaseLink: document.getElementById('purchaseLink').value,
-            discount: parseFloat(document.getElementById('discount').value) || 0
+            discount: parseFloat(document.getElementById('discount').value) || 0,
+            inStock: document.getElementById('inStock').checked
         };
         console.log('Gönderilen veri:', gameData);
         try {
@@ -105,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (!response.ok) throw new Error(isEditing ? 'Oyun güncellenemedi' : 'Oyun eklenemedi');
             gameForm.reset();
+            document.getElementById('inStock').checked = true; // Varsayılan işaretli
             isEditing = false;
             editingGameId = null;
             gameForm.querySelector('button[type="submit"]').textContent = 'Oyun Ekle';
@@ -131,6 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('description').value = game.description;
                 document.getElementById('purchaseLink').value = game.purchaseLink;
                 document.getElementById('discount').value = game.discount || 0;
+                document.getElementById('inStock').checked = game.inStock !== false;
                 isEditing = true;
                 editingGameId = id;
                 gameForm.querySelector('button[type="submit"]').textContent = 'Oyunu Güncelle';

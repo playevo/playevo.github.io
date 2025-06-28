@@ -196,3 +196,24 @@
     justify-content: center;
     gap: 0.5rem;
 }
+
+/* Stok şeridi */
+.out-of-stock {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    background-color: rgba(75, 85, 99, 0.8); /* Koyu gri, yarı şeffaf */
+    color: white;
+    font-weight: bold;
+    padding: 0.5rem 2rem;
+    z-index: 3;
+    font-size: 1.25rem;
+}
+
+/* İnaktif buton */
+.out-of-stock-button {
+    background-color: #4B5563 !important; /* Gri */
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+}

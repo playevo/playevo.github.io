@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Paneli</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body class="bg-gray-900 text-white">
     <!-- Navbar -->
@@ -77,6 +78,10 @@
             <div class="mb-4">
                 <label for="purchaseLink" class="block text-gray-300">Satın Alma Linki</label>
                 <input type="url" id="purchaseLink" name="purchaseLink" class="w-full p-2 rounded bg-gray-700 text-white" required>
+            </div>
+            <div class="mb-4">
+                <label for="inStock" class="block text-gray-300">Stokta Var</label>
+                <input type="checkbox" id="inStock" name="inStock" checked class="p-2 rounded bg-gray-700 text-white">
             </div>
             <button type="submit" class="w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Oyun Ekle</button>
         </form>

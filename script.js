@@ -22,7 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
             allGames = allGames.map(game => ({
                 ...game,
                 discount: parseFloat(game.discount) || 0,
-                video: game.video || ''
+                video: game.video || '',
+                inStock: game.inStock !== false
             }));
             setupSlider(allGames.slice(0, 3));
             displayGames(allGames);
@@ -60,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>
                         ${game.discount > 0 ? `<span class="line-through text-gray-500">${game.price} TL</span> <span class="text-green-400">${finalPrice} TL</span> (%${game.discount} indirim)` : `${game.price} TL`}
                     </p>
-                    <a href="game.html?id=${game.id}">Detaylar</a>
+                    <a href="game.html?id=${game.id}" class="${game.inStock ? '' : 'out-of-stock-button'}">Detaylar</a>
+                    ${game.inStock ? '' : '<div class="out-of-stock">Stok Tükendi</div>'}
                 </div>
             `;
             sliderContainer.appendChild(slide);
@@ -144,18 +146,19 @@ document.addEventListener('DOMContentLoaded', () => {
             gameCard.className = 'game-card bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow';
             gameCard.innerHTML = `
                 <div class="relative">
-                    <a href="game.html?id=${game.id}">
+                    <a href="game.html?id=${game.id}" class="${game.inStock ? '' : 'out-of-stock-button'}">
                         <img src="${game.image}" alt="${game.title}" class="w-full h-48 object-cover">
                     </a>
                     <span class="absolute top-2 left-2 bg-blue-600 text-white text-xs px-2 py-1 rounded">${game.category || 'Belirtilmemiş'}</span>
                     ${game.discount > 0 ? `<span class="absolute top-2 right-2 bg-green-600 text-white text-xs px-2 py-1 rounded">-${game.discount}%</span>` : ''}
+                    ${game.inStock ? '' : '<div class="out-of-stock">Stok Tükendi</div>'}
                 </div>
                 <div class="p-4">
                     <h3 class="text-xl font-semibold text-blue-400">${game.title}</h3>
                     <p class="text-gray-400">
                         ${game.discount > 0 ? `<span class="line-through text-gray-500">${game.price} TL</span> <span class="text-green-400">${finalPrice} TL</span>` : `${game.price} TL`}
                     </p>
-                    <a href="game.html?id=${game.id}" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Detaylar</a>
+                    <a href="game.html?id=${game.id}" class="mt-4 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ${game.inStock ? '' : 'out-of-stock-button'}">Detaylar</a>
                 </div>
             `;
             gameList.appendChild(gameCard);
@@ -180,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
             displayGames(allGames);
             return;
         }
-        constHoffilteredGames = allGames.filter(game => 
+        const filteredGames = allGames.filter(game => 
             game.title.toLowerCase().includes(lowercaseQuery) || 
             (game.category && game.category.toLowerCase().includes(lowercaseQuery))
         );

@@ -54,7 +54,8 @@ app.post('/api/games', async (req, res) => {
             category: req.body.category,
             description: req.body.description,
             purchaseLink: req.body.purchaseLink,
-            discount: parseFloat(req.body.discount) || 0
+            discount: parseFloat(req.body.discount) || 0,
+            inStock: req.body.inStock !== false
         };
         console.log('Yeni oyun:', newGame);
         games.push(newGame);
@@ -84,7 +85,8 @@ app.put('/api/games/:id', async (req, res) => {
             category: req.body.category,
             description: req.body.description,
             purchaseLink: req.body.purchaseLink,
-            discount: parseFloat(req.body.discount) || 0
+            discount: parseFloat(req.body.discount) || 0,
+            inStock: req.body.inStock !== false
         };
         console.log('Güncellenen oyun:', updatedGame);
         games[gameIndex] = updatedGame;
